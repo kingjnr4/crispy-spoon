@@ -1,19 +1,19 @@
 import { Router } from "express";
 import TestController from "../controllers/test.controller";
-import { IRoute } from "../interfaces/route.interface";
+import { Route } from "../interfaces/route.interface";
 
-class TestRoute implements IRoute {
-    public path: string = "/test"
-    public router: Router = Router()
-    public controller: TestController = new TestController()
+class TestRoute implements Route {
+  public path: string = "/test";
+  public router: Router = Router();
+  public controller: TestController = new TestController();
 
-    constructor(){
-        this.initializeRoutes()
-    }
+  constructor() {
+    this.initializeRoutes();
+  }
 
-    private initializeRoutes(){
-        this.router.get(this.path, this.controller.getHello)
-    }
+  private initializeRoutes() {
+    this.router.get(this.path, this.controller.getHello);
+  }
 }
 
-export default TestRoute
+export default TestRoute;
