@@ -19,5 +19,8 @@ model User {
   account_number String  @unique
   balance        Decimal
 
-  @@map("")
+  @@map("users")
+}
+
+model Transaction {
 }

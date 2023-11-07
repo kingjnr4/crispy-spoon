@@ -1,5 +1,5 @@
 -- CreateTable
-CREATE TABLE "" (
+CREATE TABLE "users" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "firstname" TEXT NOT NULL,
     "lastname" TEXT NOT NULL,
@@ -10,10 +10,10 @@ CREATE TABLE "" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "_email_key" ON ""("email");
+CREATE UNIQUE INDEX "_email_key" ON "users"("email");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "_phone_key" ON ""("phone");
+CREATE UNIQUE INDEX "_phone_key" ON "users"("phone");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "_account_number_key" ON ""("account_number");
+CREATE UNIQUE INDEX "_account_number_key" ON "users"("account_number");
