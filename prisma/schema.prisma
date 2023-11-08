@@ -31,6 +31,7 @@ model Transaction {
   user_id    Int
   user       User     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   type       String
+  desc       String?
   amount     Decimal
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
