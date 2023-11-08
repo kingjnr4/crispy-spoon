@@ -1,5 +1,5 @@
 Arguments: 
-  /home/licha/.nvm/versions/node/v18.18.1/bin/node /home/licha/.yarn/bin/yarn.js add prisma --save-dev
+  /home/licha/.nvm/versions/node/v18.18.1/bin/node /home/licha/.yarn/bin/yarn.js add vaidator
 
 PATH: 
   /home/licha/.yarn/bin:/home/licha/.config/yarn/global/node_modules/.bin:/home/licha/.yarn/bin:/home/licha/.config/yarn/global/node_modules/.bin:/home/licha/.nvm/versions/node/v18.18.1/bin:/home/licha/.local/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/var/lib/flatpak/exports/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
@@ -14,15 +14,17 @@ Platform:
   linux x64
 
 Trace: 
-  Error: connect ENETUNREACH 2606:4700::6810:223:443 - Local (:::0)
-      at internalConnect (node:net:1100:16)
-      at defaultTriggerAsyncIdScope (node:internal/async_hooks:463:18)
-      at emitLookup (node:net:1381:9)
-      at /home/licha/.yarn/lib/cli.js:107543:29
-      at /home/licha/.yarn/lib/cli.js:107389:25
-      at module.exports.RawTask.call (/home/licha/.yarn/lib/cli.js:83614:19)
-      at flush (/home/licha/.yarn/lib/cli.js:83696:29)
-      at process.processTicksAndRejections (node:internal/process/task_queues:77:11)
+  Error: https://registry.yarnpkg.com/vaidator: Not found
+      at params.callback [as _callback] (/home/licha/.yarn/lib/cli.js:66988:18)
+      at self.callback (/home/licha/.yarn/lib/cli.js:140749:22)
+      at Request.emit (node:events:517:28)
+      at Request.<anonymous> (/home/licha/.yarn/lib/cli.js:141721:10)
+      at Request.emit (node:events:517:28)
+      at IncomingMessage.<anonymous> (/home/licha/.yarn/lib/cli.js:141643:12)
+      at Object.onceWrapper (node:events:631:28)
+      at IncomingMessage.emit (node:events:529:35)
+      at endReadableNT (node:internal/streams/readable:1368:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
 
 npm manifest: 
   {
@@ -39,6 +41,7 @@ npm manifest:
     "author": "",
     "license": "ISC",
     "dependencies": {
+      "@prisma/client": "5.5.2",
       "cors": "^2.8.5",
       "dotenv": "^16.0.3",
       "express": "^4.18.2",
@@ -46,7 +49,8 @@ npm manifest:
       "express-list-routes": "^1.1.5",
       "http-status-codes": "^2.2.0",
       "morgan": "^1.10.0",
-      "winston": "^3.8.2"
+      "winston": "^3.8.2",
+      "zod": "^3.22.4"
     },
     "devDependencies": {
       "@types/cors": "^2.8.12",
@@ -54,6 +58,7 @@ npm manifest:
       "@types/morgan": "^1.9.4",
       "@types/node": "^18.11.18",
       "nodemon": "^2.0.20",
+      "prisma": "^5.5.2",
       "ts-node-dev": "^2.0.0",
       "typescript": "^4.9.4"
     }
@@ -105,6 +110,23 @@ Lockfile:
     dependencies:
       "@jridgewell/resolve-uri" "^3.0.3"
       "@jridgewell/sourcemap-codec" "^1.4.10"
+  
+  "@prisma/client@5.5.2":
+    version "5.5.2"
+    resolved "https://registry.yarnpkg.com/@prisma/client/-/client-5.5.2.tgz#ce6389e7ad9e9cf0fc2a7c6a0032ad2e12a9fd61"
+    integrity sha512-54XkqR8M+fxbzYqe+bIXimYnkkcGqgOh0dn0yWtIk6CQT4IUCAvNFNcQZwk2KqaLU+/1PHTSWrcHtx4XjluR5w==
+    dependencies:
+      "@prisma/engines-version" "5.5.1-1.aebc046ce8b88ebbcb45efe31cbe7d06fd6abc0a"
+  
+  "@prisma/engines-version@5.5.1-1.aebc046ce8b88ebbcb45efe31cbe7d06fd6abc0a":
+    version "5.5.1-1.aebc046ce8b88ebbcb45efe31cbe7d06fd6abc0a"
+    resolved "https://registry.yarnpkg.com/@prisma/engines-version/-/engines-version-5.5.1-1.aebc046ce8b88ebbcb45efe31cbe7d06fd6abc0a.tgz#35cd59ed65ee1f9e333f4865ec86a4432c4d0a9c"
+    integrity sha512-O+qHFnZvAyOFk1tUco2/VdiqS0ym42a3+6CYLScllmnpbyiTplgyLt2rK/B9BTjYkSHjrgMhkG47S0oqzdIckA==
+  
+  "@prisma/engines@5.5.2":
+    version "5.5.2"
+    resolved "https://registry.yarnpkg.com/@prisma/engines/-/engines-5.5.2.tgz#fe0d2361a48c7d59568ccf0d35c75432594e1ac1"
+    integrity sha512-Be5hoNF8k+lkB3uEMiCHbhbfF6aj1GnrTBnn5iYFT7GEr3TsOEp1soviEcBR0tYCgHbxjcIxJMhdbvxALJhAqg==
   
   "@tsconfig/node10@^1.0.7":
     version "1.0.9"
@@ -979,6 +1001,13 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.3.1.tgz#3ba3833733646d9d3e4995946c1365a67fb07a42"
     integrity sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==
   
+  prisma@^5.5.2:
+    version "5.5.2"
+    resolved "https://registry.yarnpkg.com/prisma/-/prisma-5.5.2.tgz#54ad2f04f0dd4174f27128e4447013e8d75c4d69"
+    integrity sha512-WQtG6fevOL053yoPl6dbHV+IWgKo25IRN4/pwAGqcWmg7CrtoCzvbDbN9fXUc7QS2KK0LimHIqLsaCOX/vHl8w==
+    dependencies:
+      "@prisma/engines" "5.5.2"
+  
   proxy-addr@~2.0.7:
     version "2.0.7"
     resolved "https://registry.yarnpkg.com/proxy-addr/-/proxy-addr-2.0.7.tgz#f19fe69ceab311eeb94b42e70e8c2070f9ba1025"
@@ -1362,3 +1391,8 @@ Lockfile:
     version "3.1.1"
     resolved "https://registry.yarnpkg.com/yn/-/yn-3.1.1.tgz#1e87401a09d767c1d5eab26a6e4c185182d2eb50"
     integrity sha512-Ux4ygGWsu2c7isFWe8Yu1YluJmqVhxqK2cLXNQA5AcC3QfbGNpM7fu0Y8b/z16pXLnFxZYvWhd3fhBY9DLmC6Q==
+  
+  zod@^3.22.4:
+    version "3.22.4"
+    resolved "https://registry.yarnpkg.com/zod/-/zod-3.22.4.tgz#f31c3a9386f61b1f228af56faa9255e845cf3fff"
+    integrity sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==

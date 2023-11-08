@@ -7,4 +7,7 @@ export const {
   PORT,
   LOG_FORMAT,
   LOG_DIR,
+  JWT_EXPIRES_IN,
+  JWT_SECRET,
+  SECRET_KEY,
 } = process.env;

@@ -1,20 +1,17 @@
 {
   "compilerOptions": {
     "experimentalDecorators": true,
-    "target": "es2016",
+    "target": "ESNext",
     "module": "commonjs",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strictPropertyInitialization": false,
-    "strict": true, 
+    "strict": true,
     "outDir": "./dist",
     "rootDir": "src",
     "noImplicitAny": false,
+    "typeRoots": ["./types"]
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }

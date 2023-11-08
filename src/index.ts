@@ -1,8 +1,13 @@
-import App from "./app"
-import TestRoute from "./routes/test.route"
+import App from "./app";
+import { DB } from "./database";
+import { AuthRoute } from "./routes/auth.route";
+import TestRoute from "./routes/test.route";
+import { logger } from "./utils/logger";
 
-const app = new App([
-    new TestRoute()
-])
-
-app.listen()
+const db = DB.getInstance();
+(async () => {
+  await db.$connect();
+  logger.info("🛢 [database] :Database connection successfull");
+})();
+const app = new App([new TestRoute(), new AuthRoute()]);
+app.listen();
