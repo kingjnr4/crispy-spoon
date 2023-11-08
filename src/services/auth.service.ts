@@ -7,11 +7,13 @@ import HttpException, {
 } from "../utils/exception";
 import { StatusCodes, UNAUTHORIZED } from "http-status-codes";
 import { comparePassword, hashPassword, signJwt } from "../utils/helpers";
+import { logger } from "../utils/logger";
 
 export default class AuthService {
-  public async register(dto: registerDto) {
+  private static db = DB.getInstance();
+  public static async register(dto: registerDto) {
     const passhash = await hashPassword(dto.body.password);
-    const user = await DB.getInstance().user.create({
+    const user = await this.db.user.create({
       data: {
         email: dto.body.email,
         firstname: dto.body.firstname,
@@ -24,10 +26,10 @@ export default class AuthService {
     });
     const { password, ...rest } = user;
     const jwt = signJwt(rest);
-    return { jwt, rest };
+    return { jwt, user: rest };
   }
-  public async login(dto: loginDto) {
-    const user = await DB.getInstance().user.findFirst({
+  public static async login(dto: loginDto) {
+    const user = await this.db.user.findFirst({
       where: {
         email: dto.body.email,
       },
@@ -35,9 +37,12 @@ export default class AuthService {
     if (!user) throw new UnAuthorizedException("Invalid Credentials");
     const passwordMatch = comparePassword(dto.body.password, user.password);
     if (!passwordMatch) throw new UnAuthorizedException("Invalid Credentials");
+    const { password, ...rest } = user;
+    const jwt = signJwt(rest);
+    return { jwt, user: rest };
   }
-  public async profile(id: number) {
-    const user = await DB.getInstance().user.findFirst({
+  public static async profile(id: number) {
+    const user = await this.db.user.findFirst({
       where: {
         id,
       },

@@ -13,8 +13,8 @@ import { withdrawDto } from "../dto/withdraw.dto";
 import { transferDto } from "../dto/transfer.dto";
 
 export default class TransactionService {
-  private readonly db = DB.getInstance();
-  public async deposit(dto: depositDto, user_id: number) {
+  private static readonly db = DB.getInstance();
+  public static async deposit(dto: depositDto, user_id: number) {
     const { password, ...user } = await this.db.user.update({
       where: {
         id: user_id,
@@ -36,7 +36,7 @@ export default class TransactionService {
       },
     });
   }
-  public async withdraw(dto: withdrawDto, user_id: number) {
+  public static async withdraw(dto: withdrawDto, user_id: number) {
     try {
       await this.db.$transaction(async (tx) => {
         const user = await tx.user.update({
@@ -63,7 +63,7 @@ export default class TransactionService {
       throw new BadRequestException((err as Error).message);
     }
   }
-  public async transfer(dto: transferDto, user_id: number) {
+  public static async transfer(dto: transferDto, user_id: number) {
     try {
       await this.db.$transaction(async (tx) => {
         const reciever = await tx.user.findFirst({
@@ -109,7 +109,7 @@ export default class TransactionService {
     }
   }
 
-  async listTransactions(user_id: number) {
+  public static async listTransactions(user_id: number) {
     return await this.db.transaction.findMany({
       where: {
         user_id,

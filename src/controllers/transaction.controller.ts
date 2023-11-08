@@ -4,18 +4,12 @@ import AuthService from "../services/auth.service";
 import TransactionService from "../services/transaction.service";
 
 export default class TransactionController {
-  private readonly transactionService: TransactionService;
-
-  constructor() {
-    this.transactionService = new TransactionService();
-  }
-
   public async transfer(
     request: Request,
     response: Response,
     next: NextFunction
   ) {
-    const data = await this.transactionService.transfer(
+    const data = await TransactionService.transfer(
       request.body,
       <number>request.authUser?.id
     );
@@ -26,7 +20,7 @@ export default class TransactionController {
     response: Response,
     next: NextFunction
   ) {
-    const data = await this.transactionService.deposit(
+    const data = await TransactionService.deposit(
       request.body,
       <number>request.authUser?.id
     );
@@ -37,14 +31,14 @@ export default class TransactionController {
     response: Response,
     next: NextFunction
   ) {
-    const data = await this.transactionService.withdraw(
-      request.body,
+    const data = await TransactionService.withdraw(
+      request,
       <number>request.authUser?.id
     );
     response.status(StatusCodes.OK).send(data);
   }
   public async list(request: Request, response: Response, next: NextFunction) {
-    const data = await this.transactionService.listTransactions(
+    const data = await TransactionService.listTransactions(
       <number>request.authUser?.id
     );
     response.status(StatusCodes.OK).send(data);

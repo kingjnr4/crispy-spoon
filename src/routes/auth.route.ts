@@ -5,13 +5,15 @@ import { validationMiddleware } from "../middlewares/validation.middleware";
 import { registerSchema } from "../dto/register.dto";
 import { loginSchema } from "../dto/login.dto";
 import { authMiddleware } from "../middlewares/auth.middleware";
+import { logger } from "../utils/logger";
 
 export class AuthRoute implements Route {
   path = "/auth";
   router = Router();
-  public controller = new AuthContoller();
+  public controller: AuthContoller;
 
   constructor() {
+    this.controller = new AuthContoller();
     this.initializeRoutes();
   }
 
@@ -26,7 +28,7 @@ export class AuthRoute implements Route {
       validationMiddleware(loginSchema),
       this.controller.login
     );
-    this.router.post(
+    this.router.get(
       `${this.path}/profile`,
       authMiddleware,
       this.controller.profile

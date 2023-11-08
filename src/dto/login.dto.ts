@@ -9,15 +9,7 @@ export const loginSchema = z.object({
       })
       .email("must be email")
       .min(1)
-      .trim()
-      .refine(async (email) => {
-        const user = await DB.getInstance().user.findFirst({
-          where: {
-            email,
-          },
-        });
-        return Boolean(!user);
-      }, "User already exists"),
+      .trim(),
     password: z.string({ required_error: "password is required" }).min(6),
   }),
 });
