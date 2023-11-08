@@ -27,7 +27,7 @@ export default class TransactionService {
     });
     if (!user) {
     }
-    return await this.db.transaction.create({
+    const txn = await this.db.transaction.create({
       data: {
         amount: dto.body.amount,
         type: "credit",
@@ -35,6 +35,7 @@ export default class TransactionService {
         desc: `User deposited ${dto.body.amount} into account`,
       },
     });
+    return txn;
   }
   public static async withdraw(dto: withdrawDto, user_id: number) {
     try {
@@ -56,7 +57,7 @@ export default class TransactionService {
           amount: dto.body.amount,
           type: "debit",
           user_id,
-          desc: `User withdrew ${dto.body.amount} }`,
+          desc: `User withdrew ${dto.body.amount} `,
         },
       });
     } catch (err) {

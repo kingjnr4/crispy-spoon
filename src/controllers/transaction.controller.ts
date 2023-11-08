@@ -10,7 +10,7 @@ export default class TransactionController {
     next: NextFunction
   ) {
     const data = await TransactionService.transfer(
-      request.body,
+      request,
       <number>request.authUser?.id
     );
     response.status(StatusCodes.OK).send(data);
@@ -21,7 +21,7 @@ export default class TransactionController {
     next: NextFunction
   ) {
     const data = await TransactionService.deposit(
-      request.body,
+      request,
       <number>request.authUser?.id
     );
     response.status(StatusCodes.OK).send(data);
